@@ -23,7 +23,7 @@ Compose: A tool for defining and running multi-container Docker applications. Co
 
 These fundamental Docker objects empower developers to create, deploy, and manage applications efficiently in containerized environments.
 
-**DockerFile :**
+### **DockerFile :**
 ```
 FROM ruby:3.2.2-alpine
 
@@ -45,37 +45,35 @@ CMD ["server"]
 ```
 
 FROM ruby:3.2.2-alpine:
-
 Sets the base image to Ruby version 3.2.2-alpine, which is a lightweight version of the Alpine Linux distribution with Ruby pre-installed.
+
 ENV RAILS_ROOT /app:
-
 Defines an environment variable RAILS_ROOT with the value "/app". This will be the working directory for the subsequent commands.
+
 ENV LANG C.UTF-8:
-
 Sets the default language to UTF-8.
+
 WORKDIR $RAILS_ROOT:
-
 Changes the working directory to the value of RAILS_ROOT (which is "/app").
-RUN apk update && :
 
+RUN apk update && :
 Updates the package index (apk update) and continues to the next command using the backslash.
 apk add --no-cache build-base sqlite-dev nodejs postgresql-dev:
-
 Installs the required dependencies for building a Ruby on Rails application, including build tools (build-base), SQLite development libraries (sqlite-dev), Node.js, and PostgreSQL development libraries (postgresql-dev).
+
 COPY . .:
-
 Copies all files from the current directory (the context where the docker build command is executed) to the /app directory in the Docker image.
+
 RUN gem install bundler && bundle install --jobs 20 --retry 5:
-
 Installs the Bundler gem and then installs the project dependencies using Bundler. The --jobs 20 and --retry 5 flags optimize the installation process by running multiple jobs in parallel and retrying failed operations.
+
 ENTRYPOINT [ "/app/entrypoint/docker-entrypoint.sh" ]:
-
 Sets the default entry point script for the container. It specifies the location of the script (/app/entrypoint/docker-entrypoint.sh), which might include setup tasks before running the main application.
-CMD ["server"]:
 
+CMD ["server"]:
 Specifies the default command to be executed when the container starts. In this case, it starts the Rails server.
 
-**Docker-Compose :**
+### **Docker-Compose :**
 ```
 version: '3.8'
 
@@ -124,7 +122,7 @@ depends_on:: Ensures that the db service is started before the web service.
 environment:: Sets the environment variable DATABASE_URL to connect to the PostgreSQL database.
 volumes:: Defines a named volume dbdata, which is used to persist the data of the PostgreSQL database.
 
-**Docker Coammnds:**
+### **Docker Coammnds:**
 Here are some commonly used Docker commands:
 
 docker images: List all Docker images.
@@ -138,7 +136,7 @@ docker-compose build: Build or rebuild services defined in a Docker Compose file
 docker-compose up: Start services defined in a Docker Compose file.
 
 
-**Docker Tag, Push, and Pull Commands :**
+### **Docker Tag, Push, and Pull Commands :**
 docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]:
 Tags a local image with a new image name or version.
 
@@ -149,7 +147,7 @@ docker pull IMAGE_NAME[:TAG]:
 Pulls a Docker image or a specific tagged version from a remote registry.
 These commands are crucial for versioning, distributing, and sharing Docker images across different environments and systems.
 
-**Docker Network :**
+### **Docker Network :**
 Docker Network allows containers to communicate with each other within the same or different hosts, facilitating seamless connectivity
 command :
 ```
@@ -157,4 +155,4 @@ docker network create my_network
 docker run --name db --network my_network -e POSTGRES_PASSWORD=password -d postgres
 docker run --name my_app_container --network my_network -p 3000:3000 -e DATABASE_URL=postgres://postgres:password@db:5432/postgres -d bhattom09/simple_post-web:1.0
 ```
-#Thank You. 🙏
+# Thank You. 🙏
