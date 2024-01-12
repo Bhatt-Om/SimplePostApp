@@ -1,12 +1,14 @@
-Docker Integration 🐳
+# Docker Integration 🐳
 
-Introduction to Docker
+## Disclaimer :
+This documentation is based on my current understanding of Docker, and I acknowledge that I am new to its concepts. Please approach the information provided with caution and consider it as a representation of my current knowledge, subject to updates and improvements as I continue to explore and learn more about Docker.
 
+## Introduction to Docker
 
-Q> What is Docker? 
+**Q> What is Docker?**
   Docker is a platform that enables developers to automate the deployment of applications inside lightweight, portable containers. These containers encapsulate the application and its dependencies, ensuring consistent and reliable execution across various environments.
 
-Docker Objects :
+**Docker Objects :**
 Docker introduces several key objects that are crucial for understanding its functionality:
 
 Image: A lightweight, standalone, and executable package that includes everything needed to run a piece of software, including the code, runtime, libraries, and system tools.
@@ -21,7 +23,7 @@ Compose: A tool for defining and running multi-container Docker applications. Co
 
 These fundamental Docker objects empower developers to create, deploy, and manage applications efficiently in containerized environments.
 
-DockerFile :
+**DockerFile :**
 ```
 FROM ruby:3.2.2-alpine
 
@@ -73,7 +75,7 @@ CMD ["server"]:
 
 Specifies the default command to be executed when the container starts. In this case, it starts the Rails server.
 
-Docker-Compose :
+**Docker-Compose :**
 ```
 version: '3.8'
 
@@ -122,7 +124,7 @@ depends_on:: Ensures that the db service is started before the web service.
 environment:: Sets the environment variable DATABASE_URL to connect to the PostgreSQL database.
 volumes:: Defines a named volume dbdata, which is used to persist the data of the PostgreSQL database.
 
-Docker Coammnds:
+**Docker Coammnds:**
 Here are some commonly used Docker commands:
 
 docker images: List all Docker images.
@@ -136,7 +138,7 @@ docker-compose build: Build or rebuild services defined in a Docker Compose file
 docker-compose up: Start services defined in a Docker Compose file.
 
 
-Docker Tag, Push, and Pull Commands :
+**Docker Tag, Push, and Pull Commands :**
 docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]:
 Tags a local image with a new image name or version.
 
@@ -147,7 +149,7 @@ docker pull IMAGE_NAME[:TAG]:
 Pulls a Docker image or a specific tagged version from a remote registry.
 These commands are crucial for versioning, distributing, and sharing Docker images across different environments and systems.
 
-Docker Network :
+**Docker Network :**
 Docker Network allows containers to communicate with each other within the same or different hosts, facilitating seamless connectivity
 command :
 ```
@@ -155,4 +157,4 @@ docker network create my_network
 docker run --name db --network my_network -e POSTGRES_PASSWORD=password -d postgres
 docker run --name my_app_container --network my_network -p 3000:3000 -e DATABASE_URL=postgres://postgres:password@db:5432/postgres -d bhattom09/simple_post-web:1.0
 ```
-Thank You.
+#Thank You. 🙏
